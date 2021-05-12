@@ -5,6 +5,7 @@ import (
 )
 
 func main() {
+	//高階関数(関数を引数で受け取る関数)
 	modify := func(a []string, f func([]string) []string) []string {
 		return f(a)
 	}
