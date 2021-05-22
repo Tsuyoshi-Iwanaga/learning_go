@@ -7,7 +7,7 @@ import (
 //pointer
 func main() {
 	n := 123
-	m := 10000
+	m := 1000
 
 	p := &n
 	p2 := &m
