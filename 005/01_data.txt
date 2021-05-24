@@ -1,0 +1,2 @@
+go test data
+This is go test data.
