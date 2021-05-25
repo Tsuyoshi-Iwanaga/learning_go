@@ -1,0 +1,4 @@
+*** start ***
+hello go!
+I'm learning go.
+*** end ***
