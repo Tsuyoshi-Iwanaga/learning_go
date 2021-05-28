@@ -4,6 +4,7 @@ go 1.16
 
 require (
 	fyne.io/fyne/v2 v2.0.3
+	github.com/PuerkitoBio/goquery v1.6.1 // indirect
 	github.com/go-gl/gl v0.0.0-20210501111010-69f74958bac0 // indirect
 	github.com/srwiley/oksvg v0.0.0-20210519022825-9fc0c575d5fe // indirect
 	github.com/srwiley/rasterx v0.0.0-20210519020934-456a8d69b780 // indirect
