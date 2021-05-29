@@ -29,17 +29,17 @@ func main() {
 	defer con.Close()
 
 	for true {
-		s := input("id")
+		s := input("find Name")
 		if s == "" {
 			break
 		}
 
-		n, er := strconv.Atoi(s)
-		if er != nil {
-			panic(er)
-		}
+		// n, er := strconv.Atoi(s)
+		// if er != nil {
+		// 	panic(er)
+		// }
 
-		rs, er := con.Query("select * from mydata where id = ?", n)
+		rs, er := con.Query("select * from mydata where name like ?", "%"+s+"%")
 		if er != nil {
 			panic(er)
 		}
