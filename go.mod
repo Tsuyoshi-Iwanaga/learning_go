@@ -4,6 +4,7 @@ go 1.16
 
 require (
 	fyne.io/fyne/v2 v2.0.3
+	github.com/JohannesKaufmann/html-to-markdown v1.2.0 // indirect
 	github.com/PuerkitoBio/goquery v1.6.1 // indirect
 	github.com/go-gl/gl v0.0.0-20210501111010-69f74958bac0 // indirect
 	github.com/mattn/go-sqlite3 v1.14.7 // indirect
