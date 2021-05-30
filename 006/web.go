@@ -73,12 +73,14 @@ func hello(w http.ResponseWriter, rq *http.Request, tmp *template.Template) {
 		Message  string
 		JMessage string
 		Items    []string
+		ParamId  string
 	}{
 		Flg:      flg,
 		Title:    "Send values",
 		Message:  "Content01",
 		JMessage: "Content02",
 		Items:    []string{"One", "Two", "Three"},
+		ParamId:  rq.FormValue("id"),
 	}
 
 	er := tmp.Execute(w, item)
