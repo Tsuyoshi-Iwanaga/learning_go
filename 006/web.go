@@ -6,6 +6,8 @@ import (
 	"math/rand"
 	"net/http"
 	"time"
+
+	"github.com/gorilla/sessions"
 )
 
 //Temps is template structure
@@ -53,6 +55,8 @@ func index(w http.ResponseWriter, rq *http.Request, tmp *template.Template) {
 	}
 }
 
+var cs *sessions.CookieStore = sessions.NewCookieStore([]byte("secret-key-12345"))
+
 //hello handler.
 func hello(w http.ResponseWriter, rq *http.Request, tmp *template.Template) {
 
@@ -67,12 +71,24 @@ func hello(w http.ResponseWriter, rq *http.Request, tmp *template.Template) {
 		flg = false
 	}
 
+	ses, _ := cs.Get(rq, "hello-session")
+
 	nm := ""
 	pw := ""
 	if rq.Method == "POST" {
-		nm = rq.PostFormValue("name")
-		pw = rq.PostFormValue("pass")
+		ses.Values["login"] = nil
+		ses.Values["name"] = nil
+		nm := rq.PostFormValue("name")
+		pw := rq.PostFormValue("pass")
+		if nm == pw {
+			ses.Values["login"] = true
+			ses.Values["name"] = nm
+		}
+		ses.Save(rq, w)
 	}
+
+	isLogin, _ := ses.Values["login"].(bool)
+	lname, _ := ses.Values["name"].(string)
 
 	item := struct {
 		Flg      bool
@@ -83,6 +99,8 @@ func hello(w http.ResponseWriter, rq *http.Request, tmp *template.Template) {
 		ParamId  string
 		PostName string
 		PostPass string
+		IsLogin  bool
+		Lname    string
 	}{
 		Flg:      flg,
 		Title:    "Send values",
@@ -92,6 +110,8 @@ func hello(w http.ResponseWriter, rq *http.Request, tmp *template.Template) {
 		ParamId:  rq.FormValue("id"),
 		PostName: nm,
 		PostPass: pw,
+		IsLogin:  isLogin,
+		Lname:    lname,
 	}
 
 	er := tmp.Execute(w, item)
