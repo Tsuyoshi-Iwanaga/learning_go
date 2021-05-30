@@ -3,7 +3,9 @@ package main
 import (
 	"html/template"
 	"log"
+	"math/rand"
 	"net/http"
+	"time"
 )
 
 //Temps is template structure
@@ -53,7 +55,33 @@ func index(w http.ResponseWriter, rq *http.Request, tmp *template.Template) {
 
 //hello handler.
 func hello(w http.ResponseWriter, rq *http.Request, tmp *template.Template) {
-	er := tmp.Execute(w, nil)
+
+	var flg bool = false
+
+	rand.Seed(time.Now().Unix())
+
+	switch rand.Intn(2) {
+	case 1:
+		flg = true
+	case 0:
+		flg = false
+	}
+
+	item := struct {
+		Flg      bool
+		Title    string
+		Message  string
+		JMessage string
+		Items    []string
+	}{
+		Flg:      flg,
+		Title:    "Send values",
+		Message:  "Content01",
+		JMessage: "Content02",
+		Items:    []string{"One", "Two", "Three"},
+	}
+
+	er := tmp.Execute(w, item)
 	if er != nil {
 		log.Fatal(er)
 	}
