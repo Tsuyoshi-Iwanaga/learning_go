@@ -67,6 +67,13 @@ func hello(w http.ResponseWriter, rq *http.Request, tmp *template.Template) {
 		flg = false
 	}
 
+	nm := ""
+	pw := ""
+	if rq.Method == "POST" {
+		nm = rq.PostFormValue("name")
+		pw = rq.PostFormValue("pass")
+	}
+
 	item := struct {
 		Flg      bool
 		Title    string
@@ -74,6 +81,8 @@ func hello(w http.ResponseWriter, rq *http.Request, tmp *template.Template) {
 		JMessage string
 		Items    []string
 		ParamId  string
+		PostName string
+		PostPass string
 	}{
 		Flg:      flg,
 		Title:    "Send values",
@@ -81,6 +90,8 @@ func hello(w http.ResponseWriter, rq *http.Request, tmp *template.Template) {
 		JMessage: "Content02",
 		Items:    []string{"One", "Two", "Three"},
 		ParamId:  rq.FormValue("id"),
+		PostName: nm,
+		PostPass: pw,
 	}
 
 	er := tmp.Execute(w, item)
