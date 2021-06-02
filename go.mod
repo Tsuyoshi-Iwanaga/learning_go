@@ -8,6 +8,7 @@ require (
 	github.com/PuerkitoBio/goquery v1.6.1 // indirect
 	github.com/go-gl/gl v0.0.0-20210501111010-69f74958bac0 // indirect
 	github.com/gorilla/sessions v1.2.1 // indirect
+	github.com/jinzhu/gorm v1.9.16 // indirect
 	github.com/mattn/go-sqlite3 v1.14.7 // indirect
 	github.com/srwiley/oksvg v0.0.0-20210519022825-9fc0c575d5fe // indirect
 	github.com/srwiley/rasterx v0.0.0-20210519020934-456a8d69b780 // indirect
