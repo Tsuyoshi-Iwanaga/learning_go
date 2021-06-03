@@ -18,7 +18,7 @@ type Post struct {
 	gorm.Model
 	Address string
 	Message string
-	UserId  string
+	UserId  int
 	GroupId int
 }
 
