@@ -124,12 +124,10 @@ func main() {
 
 	temps := setupTemp()
 
-	//index handling.
 	http.HandleFunc("/", func(w http.ResponseWriter, rq *http.Request) {
 		index(w, rq, temps.indx)
 	})
 
-	//hello handling
 	http.HandleFunc("/hello", func(w http.ResponseWriter, rq *http.Request) {
 		hello(w, rq, temps.helo)
 	})
